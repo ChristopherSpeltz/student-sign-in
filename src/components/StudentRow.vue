@@ -1,0 +1,44 @@
+<template>
+  <tr
+    v-for="student in students"
+    v-bind:key="student.starID"
+    v-bind:class="{ present: student.present, absent: !student.present }"
+  >
+    <td>{{ student.name }}</td>
+    <td>{{ student.starID }}</td>
+    <td>
+      <input
+        type="checkbox"
+        v-bind:checked="student.present"
+        v-on:change="arrivedOrLeft(student, $event.target.checked)"
+      />
+    </td>
+  </tr>
+</template>
+
+<script>
+export default {
+  name: "StudentRow",
+  props: {
+    student: Object,
+  },
+  methods: {
+    arrivedOrLeft(student, present) {
+      // emit message to parent
+      this.$emit("student-arrived-or-left", student, present);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.present {
+  color: gray;
+  font-style: italic;
+}
+
+.absent {
+  color: black;
+  font-weight: bold;
+}
+</style>
