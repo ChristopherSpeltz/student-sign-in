@@ -1,7 +1,5 @@
 <template>
   <tr
-    v-for="student in students"
-    v-bind:key="student.starID"
     v-bind:class="{ present: student.present, absent: !student.present }"
   >
     <td>{{ student.name }}</td>
