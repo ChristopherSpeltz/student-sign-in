@@ -11,6 +11,7 @@
         v-on:change="arrivedOrLeft(student, $event.target.checked)"
       />
     </td>
+    <td v-show="edit"> <img v-on:click="deleteStudent" src="@/assets/delete.png"></td>
   </tr>
 </template>
 
@@ -19,12 +20,16 @@ export default {
   name: "StudentRow",
   props: {
     student: Object,
+    edit: Boolean
   },
   methods: {
     arrivedOrLeft(student, present) {
       // emit message to parent
       this.$emit("student-arrived-or-left", student, present);
     },
+    deleteStudent() {
+      this.$emit('delete-student', this.student)
+    }
   },
 };
 </script>
