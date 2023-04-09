@@ -27,8 +27,12 @@ export default {
       // emit message to parent
       this.$emit("student-arrived-or-left", student, present);
     },
+    // delete student method
     deleteStudent() {
+      // confirm student deletion
+      if (confirm(`Delete ${this.student.name}?`)){
       this.$emit('delete-student', this.student)
+      }
     }
   },
 };
@@ -43,5 +47,9 @@ export default {
 .absent {
   color: black;
   font-weight: bold;
+}
+
+img{
+  height: 40px;
 }
 </style>
